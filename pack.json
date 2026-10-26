@@ -1,0 +1,171 @@
+{
+  "format": "pack/1",
+  "engine": "comfyui",
+  "kind": "Text To Image",
+  "id": "civitai-zimage",
+  "label": "Any Civitai Z-Image model",
+  "note": "Paste a Civitai model link in Cobalt Pear's «Your own worker» to set it up for that model. Z-Image Turbo settings: 8 steps, CFG 1, Euler. No negative prompt; write full sentences.",
+  "civitai": "zimage",
+  "sizes": [
+    [
+      1024,
+      1024,
+      "Square"
+    ],
+    [
+      1536,
+      960,
+      "Landscape 16:10"
+    ],
+    [
+      960,
+      1536,
+      "Portrait 10:16"
+    ],
+    [
+      1152,
+      896,
+      "Landscape 4:3"
+    ],
+    [
+      896,
+      1152,
+      "Portrait 3:4"
+    ]
+  ],
+  "size_step": 16,
+  "workflow": {
+    "10": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "model.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    "11": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen_3_4b.safetensors",
+        "type": "lumina2",
+        "device": "default"
+      }
+    },
+    "12": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "ae.safetensors"
+      }
+    },
+    "14": {
+      "class_type": "ModelSamplingAuraFlow",
+      "inputs": {
+        "model": [
+          "10",
+          0
+        ],
+        "shift": 3
+      }
+    },
+    "6": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": [
+          "11",
+          0
+        ],
+        "text": ""
+      }
+    },
+    "13": {
+      "class_type": "ConditioningZeroOut",
+      "inputs": {
+        "conditioning": [
+          "6",
+          0
+        ]
+      }
+    },
+    "5": {
+      "class_type": "EmptySD3LatentImage",
+      "inputs": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1
+      }
+    },
+    "3": {
+      "class_type": "KSampler",
+      "inputs": {
+        "model": [
+          "14",
+          0
+        ],
+        "positive": [
+          "6",
+          0
+        ],
+        "negative": [
+          "13",
+          0
+        ],
+        "latent_image": [
+          "5",
+          0
+        ],
+        "seed": 0,
+        "steps": 12,
+        "cfg": 1,
+        "sampler_name": "euler_ancestral",
+        "scheduler": "normal",
+        "denoise": 1
+      }
+    },
+    "8": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "3",
+          0
+        ],
+        "vae": [
+          "12",
+          0
+        ]
+      }
+    },
+    "9": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": [
+          "8",
+          0
+        ],
+        "filename_prefix": "civitai-zimage"
+      }
+    }
+  },
+  "prompt": [
+    [
+      "6",
+      "text"
+    ]
+  ],
+  "seed": [
+    [
+      "3",
+      "seed"
+    ]
+  ],
+  "width": [
+    [
+      "5",
+      "width"
+    ]
+  ],
+  "height": [
+    [
+      "5",
+      "height"
+    ]
+  ]
+}

@@ -82,3 +82,7 @@ Each model has its own best settings — see its Civitai page (sampler, steps, C
 - [Cobalt Pear](https://cobaltpear.github.io/) — a one-page web app. Paste the same Civitai link under **Models → Custom**: it reads the creator's settings from Civitai and sets steps, CFG and sampler for that model. Everything stays in your browser. [Try the demo](https://cobaltpear.github.io/demo/) without RunPod.
 
 Questions or ideas: [Discussions](https://github.com/cobaltpear/cobaltpear.github.io/discussions).
+
+## License
+
+AGPL-3.0 ([LICENSE](LICENSE)). This worker is based on [runpod-workers/worker-comfyui](https://github.com/runpod-workers/worker-comfyui) (AGPL-3.0), and `handler.py` is a changed copy of its handler. The models you build into it keep their own licenses.

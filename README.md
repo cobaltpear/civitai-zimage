@@ -47,15 +47,24 @@ RunPod → **Serverless** → **New Endpoint** → **Deploy from a GitHub reposi
 | → **Enable execution timeout** | on · **Execution timeout** `600` sec |
 | → click **Container configuration** to open it → **Container disk** | `40` GB |
 
-Leave everything else as it is, then **Deploy** at the bottom. The first build takes about 25 minutes. The very first request after that waits while a worker pulls the image — this can take a long time. The worker shows **Initializing**. To see what it's doing: endpoint page → **Workers** → click the worker → **Logs** → **System**.
+Leave everything else as it is, then **Deploy** at the bottom. The first build takes about 25 minutes.
+<!-- cp:initializing first=request -->
+The very first request after that waits while a worker pulls the image — this can take a long time. The worker shows **Initializing**. To see what it's doing: endpoint page → **Workers** → click the worker → **Logs** → **System**.
 
 - No error → leave it. A big image can sit on one line for a long time.
 - The same error keeps repeating → delete that worker with the 🗑 icon at the right end of its row. RunPod starts a new one.
 - Still failing after that → ask us in [Discussions](https://github.com/cobaltpear/cobaltpear.github.io/discussions) with a screenshot of the log, or the whole log.
+<!-- /cp:initializing -->
 
-**Making several in a row?** With Idle timeout `5` sec, the worker turns off 5 seconds after each result, and the next request waits while a worker starts and loads the model again. It may be the same machine or a different one, so this wait can be short or long. If you look at a result and send the next one soon after, set **Idle timeout** higher, for example `300` sec (**Manage → Edit Endpoint**). The worker then stays on for that long after each result, and the next one starts right away. You pay for that time too, so set it back to `5` when you're done.
+**Making several in a row?**
+
+<!-- cp:several result=result -->
+RunPod turns the worker off 5 seconds after each result (**Idle timeout** `5` sec). The next request then waits while a worker starts and loads the model again. It may be the same machine or a different one, so this wait can be short or long.
+
+If you look at a result and send the next one soon after, set **Idle timeout** higher, for example `300` sec (endpoint page → **Manage** → **Edit Endpoint** → **Advanced settings**). The worker then stays on for that long after each result, and the next one starts right away. You pay for that time too, so set it back to `5` when you're done.
 
 In short: `5` sec means you wait at each start and pay nothing while idle. Longer means no wait, and you pay while it waits for you.
+<!-- /cp:several -->
 
 ## Or run it on Modal
 
@@ -107,7 +116,9 @@ Each model has its own best settings — see its Civitai page (sampler, steps, C
 
 - [Cobalt Pear](https://cobaltpear.github.io/) — a one-page web app. Paste the same Civitai link under **Models → Custom**: it reads the creator's settings from Civitai and sets steps, CFG and sampler for that model. Everything stays in your browser. [Try the demo](https://cobaltpear.github.io/demo/) without RunPod.
 
+<!-- cp:page-changes -->
 RunPod and Civitai change their pages from time to time. If a button or step here looks different from what you see, tell us in [Discussions](https://github.com/cobaltpear/cobaltpear.github.io/discussions) and we'll update this guide.
+<!-- /cp:page-changes -->
 
 Questions or ideas: [Discussions](https://github.com/cobaltpear/cobaltpear.github.io/discussions).
 

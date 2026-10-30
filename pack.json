@@ -3,7 +3,7 @@
   "engine": "comfyui",
   "kind": "Text To Image",
   "id": "civitai-zimage",
-  "label": "Any Civitai Z-Image model",
+  "label": "Z-Image Universal",
   "note": "Paste a Civitai model link in Cobalt Pear's «Your own worker» to set it up for that model. Z-Image Turbo settings: 8 steps, CFG 1, Euler. No negative prompt; write full sentences.",
   "civitai": "zimage",
   "sizes": [

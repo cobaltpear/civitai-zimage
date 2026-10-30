@@ -1,4 +1,4 @@
-# Any Civitai Z-Image model — RunPod Serverless worker
+# Z-Image Universal — RunPod Serverless worker
 
 A ready-to-build [RunPod Serverless](https://runpod.io?ref=qpguwapm) worker for **any Z-Image model on Civitai or Hugging Face** — Z-Image Turbo and Base fine-tunes. You paste the model's Civitai or Hugging Face link into the `Dockerfile`; the build downloads that model and bakes it into the image. Based on the official [`runpod/worker-comfyui`](https://github.com/runpod-workers/worker-comfyui).
 

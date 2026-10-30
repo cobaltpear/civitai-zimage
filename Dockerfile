@@ -1,4 +1,4 @@
-# Any Civitai Z-Image model — RunPod Serverless ComfyUI worker (Z-Image (Turbo) models)
+# Z-Image Universal — RunPod Serverless ComfyUI worker (Z-Image (Turbo) models)
 # Build on RunPod from your own PRIVATE copy of this repo (Dockerfile path = Dockerfile, build context = .).
 # The build steps are downloaded from the original repo, so you never need to edit anything but these two lines (and the optional LORAS line).
 
